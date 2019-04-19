@@ -1,7 +1,8 @@
 from featureExtraction import FeatureExtraction
 from featureSelection import FeatureSelection
+from classification import Classification
 from preprocessing import Preprocessing
-
+from evaluation import Evaluation
 
 if __name__ == "__main__":
     data_path = 'data/input/*.csv'
@@ -24,9 +25,10 @@ if __name__ == "__main__":
 
     # --- Classification Using KNN ---
     print("=== Classification ===")
-    
+    prediction, y_test = Classification().clf(selection, data["label"])
 
     # --- Evaluation Recall, Precission, F-Measure ---
+    print("=== Evaluation ===")
+    accuracy  = Evaluation().accuracy(y_test, prediction)
 
-    print(selection)
-    print(selection.shape)
+    print('Accuracy Result is : {}'.format(accuracy))
