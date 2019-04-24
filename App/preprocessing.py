@@ -16,7 +16,7 @@ class Preprocessing:
     def cleandata(self, path=None, stemmer=False, lemmatizer=False):
         # initialize list of files
         files = glob.glob(path)
-        arr_praproses = list()
+        arr_praproses = []
         # combine files to be one dataframe
         for i, name in enumerate(files):
             df = pd.read_csv(name, encoding='"ISO-8859-1"')
@@ -40,7 +40,7 @@ class Preprocessing:
             # remove stopwords of english
             filtered_words = [w for w in tokens if not w in stopwords.words('english')]
             # initialize list of output
-            output = list()       
+            output = []       
             for kata in filtered_words:
                 # using steming, if stemmer True
                 if stemmer :
@@ -55,8 +55,8 @@ class Preprocessing:
             arr_praproses.append(output)
         # initialize dict of clean data 
         data = {
-            "ulasan" : arr_praproses,
-            "label" : lLabel
+            "ulasan" : np.array(arr_praproses),
+            "label" : np.array(lLabel)
         }
 
         return data
