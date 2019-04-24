@@ -17,6 +17,7 @@ class Preprocessing:
         # initialize list of files
         files = glob.glob(path)
         arr_praproses = []
+        # da = pd.DataFrame(columns=['Ulasan', 'Label'])
         # combine files to be one dataframe
         for i, name in enumerate(files):
             df = pd.read_csv(name, encoding='"ISO-8859-1"')
@@ -24,7 +25,7 @@ class Preprocessing:
             if i == 0:
                 da = df.copy()
             else:
-                da.append(df)
+                da = da.append(df, ignore_index=True)
         # transform column ulasan tolist
         lUlasan = da["Ulasan"].values.tolist()
         # transform column label tolist
